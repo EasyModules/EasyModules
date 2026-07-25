@@ -1,13 +1,7 @@
 # EasyModules
 
-Official distribution repository for the EasyModules suite for Foundry VTT.
+Official repository for the EasyModules Hub module for Foundry VTT.
 
-## Available Modules
+The EasyModules Hub serves as the central access point for the EasyModules ecosystem.
 
-- EasyModules (Hub)
-- EasyLoot
-- EasyMagicItems
-
-More modules coming soon.
-
-Visit our Patreon for premium releases and support.
+Additional free and premium modules will be released separately.
