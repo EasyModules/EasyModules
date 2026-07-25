@@ -1,0 +1,82 @@
+<div class="easy-modules-shell">
+  <header class="easy-modules-header">
+    <div class="easy-modules-brand-icon" aria-hidden="true"><i class="{{brandIconClass}}"></i></div>
+    <div class="easy-modules-brand-copy">
+      <span class="easy-modules-eyebrow">{{eyebrow}}</span>
+      <h1>{{brandName}}</h1>
+      <p>{{tagline}}</p>
+    </div>
+  </header>
+
+  <section class="easy-modules-section">
+    <div class="easy-modules-section-heading">
+      <h2>{{availableModulesLabel}}</h2>
+      <span>{{toolCountLabel}}</span>
+    </div>
+
+    <div class="easy-modules-list featured">
+      {{#each featuredEntries}}
+        <article class="easy-modules-card {{stateClass}} {{#unless hasIcon}}no-icon{{/unless}}">
+          {{#if hasImageIcon}}
+            <img class="easy-modules-card-icon" src="{{iconUrl}}" alt="" />
+          {{else if hasFontIcon}}
+            <div class="easy-modules-card-icon easy-modules-font-icon" aria-hidden="true">
+              <i class="{{iconClass}}"></i>
+            </div>
+          {{/if}}
+
+          <div class="easy-modules-card-copy">
+            <div class="easy-modules-card-title-row">
+              <h3>{{title}}</h3>
+              {{#if version}}<span class="easy-modules-version">v{{version}}</span>{{/if}}
+              <span class="easy-modules-status">{{stateLabel}}</span>
+            </div>
+            <p>{{description}}</p>
+          </div>
+
+          <div class="easy-modules-card-actions">
+            {{#if canConfigure}}
+              <button class="secondary" type="button" data-action="configure" data-module-id="{{id}}" title="{{configureTooltip}}">
+                <i class="fas fa-cog"></i> {{configLabel}}
+              </button>
+            {{/if}}
+            {{#if canReset}}
+              <button class="danger-ghost" type="button" data-action="reset" data-module-id="{{id}}" title="{{resetTooltip}}">
+                <i class="fas fa-rotate-left"></i> {{resetLabel}}
+              </button>
+            {{/if}}
+            <button type="button" data-action="launch" data-module-id="{{id}}">
+              {{actionLabel}}
+            </button>
+          </div>
+        </article>
+      {{/each}}
+    </div>
+  </section>
+
+  <section class="easy-modules-section upcoming-section">
+    <div class="easy-modules-section-heading">
+      <h2>{{comingNextLabel}}</h2>
+      <span>{{inDevelopmentLabel}}</span>
+    </div>
+
+    <div class="easy-modules-upcoming-grid">
+      {{#each upcomingEntries}}
+        <article class="easy-modules-upcoming-card {{#unless hasIcon}}no-icon{{/unless}}">
+          {{#if hasImageIcon}}
+            <img class="easy-modules-upcoming-icon" src="{{iconUrl}}" alt="" />
+          {{else if hasFontIcon}}
+            <div class="easy-modules-upcoming-icon easy-modules-font-icon" aria-hidden="true">
+              <i class="{{iconClass}}"></i>
+            </div>
+          {{/if}}
+          <div>
+            <h3>{{title}}</h3>
+            <p>{{description}}</p>
+          </div>
+          <span class="easy-modules-coming-badge">{{../comingSoonLabel}}</span>
+        </article>
+      {{/each}}
+    </div>
+  </section>
+</div>

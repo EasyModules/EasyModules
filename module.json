@@ -1,0 +1,37 @@
+{
+  "id": "easy-modules",
+  "title": "EasyModules Hub",
+  "description": "Central launcher and integration hub for the EasyModules suite.",
+  "version": "1.2.1",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14.364"
+  },
+  "authors": [
+    {
+      "name": "EasyModules",
+      "url": "https://github.com/EasyModules"
+    }
+  ],
+  "esmodules": [
+    "scripts/main.mjs"
+  ],
+  "styles": [
+    "styles/easy-modules.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "socket": false,
+  "license": "LICENSE",
+  "readme": "README.md",
+  "changelog": "CHANGELOG.md",
+  "url": "https://github.com/EasyModules/EasyModules",
+  "manifest": "https://raw.githubusercontent.com/EasyModules/EasyModules/main/module.json",
+  "download": "https://github.com/EasyModules/EasyModules/releases/download/v1.2.1/easy-modules-v1.2.1.zip",
+  "bugs": "https://github.com/EasyModules/EasyModules/issues"
+}

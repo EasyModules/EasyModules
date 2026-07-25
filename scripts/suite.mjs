@@ -1,0 +1,100 @@
+export const EASY_MODULES_SUITE = [
+  {
+    id: "easy-trials",
+    moduleIds: ["easy-trials", "trials-of-fate"],
+    globalApis: ["easyTrials", "trialsOfFate"],
+    title: "EasyTrials",
+    descriptionKey: "EASYMODULES.Suite.EasyTrials.Description",
+    actionLabelKey: "EASYMODULES.Suite.EasyTrials.Action",
+    iconClass: "fas fa-dice-d20",
+    order: 10,
+    launchMethods: ["start", "open", "launch"],
+    configureMethods: ["openConfiguration", "openConfig", "configure"],
+    resetMethods: ["resetSettings", "restoreDefaults", "resetToDefaults", "resetConfiguration"]
+  },
+  {
+    id: "easy-loot",
+    moduleIds: ["easy-loot", "auto-loot"],
+    globalApis: ["easyLoot", "autoLoot"],
+    title: "EasyLoot",
+    descriptionKey: "EASYMODULES.Suite.EasyLoot.Description",
+    actionLabelKey: "EASYMODULES.Suite.EasyLoot.Action",
+    configLabelKey: "EASYMODULES.Actions.Configure",
+    iconClass: "fas fa-sack-dollar",
+    order: 20,
+    launchMethods: ["generate"],
+    configureMethods: ["openConfiguration", "openConfig", "configure", "configureAndGenerate"],
+    resetMethods: ["resetSettings", "restoreDefaults", "resetToDefaults", "resetConfiguration"]
+  },
+  {
+    id: "easy-traps",
+    moduleIds: ["easy-traps", "deadly-traps"],
+    globalApis: ["easyTraps", "deadlyTraps"],
+    title: "EasyTraps",
+    descriptionKey: "EASYMODULES.Suite.EasyTraps.Description",
+    actionLabelKey: "EASYMODULES.Status.ComingSoon",
+    iconClass: "fas fa-dungeon",
+    status: "coming-soon",
+    order: 30
+  },
+  {
+    id: "easy-wounds",
+    moduleIds: ["easy-wounds"],
+    globalApis: ["easyWounds"],
+    title: "EasyWounds",
+    descriptionKey: "EASYMODULES.Suite.EasyWounds.Description",
+    actionLabelKey: "EASYMODULES.Suite.EasyWounds.Action",
+    configLabelKey: "EASYMODULES.Actions.Configure",
+    iconClass: "fas fa-heart-crack",
+    order: 40,
+    launchMethods: ["refresh"],
+    configureMethods: ["openConfiguration", "openConfig", "configure"],
+    resetMethods: ["resetSettings", "restoreDefaults", "resetToDefaults", "resetConfiguration"]
+  },
+  {
+    id: "easy-loadouts",
+    moduleIds: ["easy-loadouts"],
+    globalApis: ["easyLoadouts"],
+    title: "EasyLoadouts",
+    descriptionKey: "EASYMODULES.Suite.EasyLoadouts.Description",
+    actionLabelKey: "EASYMODULES.Status.ComingSoon",
+    iconClass: "fas fa-shield-halved",
+    status: "coming-soon",
+    order: 50
+  },
+  {
+    id: "easy-magic-items",
+    moduleIds: ["easy-magic-items"],
+    globalApis: ["easyMagicItems"],
+    title: "EasyMagicItems",
+    descriptionKey: "EASYMODULES.Suite.EasyMagicItems.Description",
+    actionLabelKey: "EASYMODULES.Suite.EasyMagicItems.Action",
+    iconClass: "fas fa-wand-sparkles",
+    order: 60,
+    launchMethods: ["start", "open", "launch"],
+    configureMethods: ["openConfiguration", "openConfig", "configure"],
+    resetMethods: ["resetSettings", "restoreDefaults", "resetToDefaults", "resetConfiguration"]
+  },
+  {
+    id: "easy-shops",
+    moduleIds: ["easy-shops"],
+    globalApis: ["easyShops"],
+    title: "EasyShops",
+    descriptionKey: "EASYMODULES.Suite.EasyShops.Description",
+    actionLabelKey: "EASYMODULES.Status.ComingSoon",
+    iconClass: "fas fa-store",
+    status: "coming-soon",
+    order: 70
+  },
+  {
+    id: "easy-crafting",
+    moduleIds: ["easy-crafting"],
+    globalApis: ["easyCrafting"],
+    title: "EasyCrafting",
+    descriptionKey: "EASYMODULES.Suite.EasyCrafting.Description",
+    actionLabelKey: "EASYMODULES.Status.ComingSoon",
+    iconClass: "fas fa-hammer",
+    status: "coming-soon",
+    order: 80
+  }
+];
