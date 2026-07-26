@@ -1,6 +1,8 @@
 <div class="easy-modules-shell">
   <header class="easy-modules-header">
-    <div class="easy-modules-brand-icon" aria-hidden="true"><i class="{{brandIconClass}}"></i></div>
+    <div class="easy-modules-brand-icon" aria-hidden="true">
+      <span class="easy-modules-brand-core"><i class="{{brandIconClass}}"></i></span>
+    </div>
     <div class="easy-modules-brand-copy">
       <span class="easy-modules-eyebrow">{{eyebrow}}</span>
       <h1>{{brandName}}</h1>
@@ -28,6 +30,7 @@
           <div class="easy-modules-card-copy">
             <div class="easy-modules-card-title-row">
               <h3>{{title}}</h3>
+              {{#if accessLabel}}<span class="easy-modules-access-badge {{accessTier}}">{{accessLabel}}</span>{{/if}}
               {{#if version}}<span class="easy-modules-version">v{{version}}</span>{{/if}}
               <span class="easy-modules-status">{{stateLabel}}</span>
             </div>
@@ -45,7 +48,7 @@
                 <i class="fas fa-rotate-left"></i> {{resetLabel}}
               </button>
             {{/if}}
-            <button type="button" data-action="launch" data-module-id="{{id}}">
+            <button class="primary" type="button" data-action="launch" data-module-id="{{id}}">
               {{actionLabel}}
             </button>
           </div>
@@ -79,4 +82,11 @@
       {{/each}}
     </div>
   </section>
+
+  <footer class="easy-modules-footer">
+    <span class="easy-modules-more">{{moreModulesLabel}}</span>
+    <a class="easy-modules-patreon" href="{{patreonUrl}}" target="_blank" rel="noopener noreferrer">
+      {{patreonLabel}} <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    </a>
+  </footer>
 </div>

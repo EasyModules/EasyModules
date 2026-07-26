@@ -1,18 +1,19 @@
-# EasyModules Hub
+# EasyModules
 
-EasyModules Hub is the central launcher and integration point for the EasyModules suite for Foundry Virtual Tabletop.
+EasyModules is the central launcher and integration hub for the EasyModules suite for Foundry Virtual Tabletop.
 
-It gives Gamemasters one place to open supported modules, access their configuration, and restore their registered settings when those actions are exposed by the module.
+Open supported modules, access their configuration, restore registered settings, and discover upcoming tools from one clean interface.
 
-## Included integrations
+## Modules
 
-- EasyLoot
-- EasyMagicItems
-- EasyTrials
-- EasyWounds
-- Additional upcoming EasyModules products
+- **EasyLoot — Free:** Generates immersive, balanced drops tailored to each creature's name, type, and Challenge Rating.
+- **EasyMagicItems — Premium:** Uses personalized filters to recommend useful magic items for each character.
+- **EasyTrials — Premium:** Creates a cinematic experience for saving throws, ability checks, and group checks.
+- **EasyWounds — Premium:** Adds blood overlays, health-based red tinting, critical-health pulses, and evolving visual wounds.
 
-The Hub does not include the other modules. Each product is installed separately.
+Coming next: **EasyShops** and **EasyTraps**.
+
+The Hub does not bundle the other modules. Each product is installed separately.
 
 ## Installation
 
@@ -22,7 +23,20 @@ Install the module in Foundry VTT using this manifest URL:
 https://raw.githubusercontent.com/EasyModules/EasyModules/main/module.json
 ```
 
-After installation, enable **EasyModules Hub** in the world's module settings. A toolbox button will be added to the scene controls for Gamemasters.
+After installation, enable **EasyModules** in the world's module settings. Gamemasters can open it from the EasyModules gear button in the scene controls.
+
+## Patreon
+
+Support development, access premium modules, and participate in future decisions:
+
+https://www.patreon.com/EasyModules
+
+## Compatibility
+
+- Foundry Virtual Tabletop v14
+- Verified with build 364
+
+See [COMPATIBILITY.md](COMPATIBILITY.md) for update-risk notes and recommended regression tests.
 
 ## Public API
 
@@ -51,7 +65,7 @@ game.easyModules.register({
 
 ## Integration hooks
 
-The Hub supports module-specific and generic hooks for configuration and reset actions. Asynchronous handlers must register their promise immediately with `payload.defer(...)`.
+Asynchronous handlers must register their promise immediately with `payload.defer(...)`.
 
 ```js
 Hooks.on("easyModules:easy-trials:reset", payload => {
@@ -61,24 +75,19 @@ Hooks.on("easyModules:easy-trials:reset", payload => {
 
 Synchronous handlers may use `payload.markHandled(result)`.
 
-Generic hooks:
+Supported generic hooks:
 
 - `easyModulesConfigure`
 - `easyModulesReset`
 - `easyModules:<module-id>:configure`
 - `easyModules:<module-id>:reset`
 
-## Compatibility
-
-- Foundry Virtual Tabletop v14
-- Verified with build 364
-
-See [COMPATIBILITY.md](COMPATIBILITY.md) for update-risk notes and recommended regression tests.
-
 ## Support
 
 Report bugs and compatibility issues through the repository's [Issues](https://github.com/EasyModules/EasyModules/issues) page.
 
-## License
+## License and third-party notices
 
-Copyright (c) 2026 EasyModules. All rights reserved. See [LICENSE](LICENSE).
+EasyModules is distributed under the proprietary [EasyModules Software License](LICENSE).
+
+Foundry Virtual Tabletop and other third-party names remain the property of their respective owners. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution, trademark, and runtime-integration notices.

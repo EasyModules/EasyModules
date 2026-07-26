@@ -53,7 +53,9 @@ export class EasyModulesRegistry {
       onClick: typeof definition.onClick === "function" ? definition.onClick : previous.onClick,
       onConfigure: typeof definition.onConfigure === "function" ? definition.onConfigure : previous.onConfigure,
       onReset: typeof definition.onReset === "function" ? definition.onReset : previous.onReset,
-      accessUrl: definition.accessUrl ?? previous.accessUrl
+      accessUrl: definition.accessUrl ?? previous.accessUrl,
+      accessTier: definition.accessTier ?? previous.accessTier ?? null,
+      accessLabelKey: definition.accessLabelKey ?? previous.accessLabelKey ?? null
     };
 
     this.#entries.set(id, normalized);

@@ -43,7 +43,7 @@ export class EasyModulesDashboard extends HandlebarsApplicationMixin(Application
     tag: "section",
     window: {
       title: EASY_MODULES_CONFIG.brandName,
-      icon: "fas fa-toolbox",
+      icon: "fas fa-gear",
       resizable: true
     },
     position: {
@@ -107,6 +107,8 @@ export class EasyModulesDashboard extends HandlebarsApplicationMixin(Application
         hasFontIcon: Boolean(iconClass),
         hasIcon: Boolean(iconUrl || iconClass),
         version: !comingSoon && installed ? foundryModule.version : null,
+        accessTier: entry.accessTier ?? null,
+        accessLabel: entry.accessLabelKey ? localize(entry.accessLabelKey) : null,
         stateLabel: comingSoon
           ? localize("EASYMODULES.Status.ComingSoon")
           : active
@@ -132,6 +134,9 @@ export class EasyModulesDashboard extends HandlebarsApplicationMixin(Application
       comingNextLabel: localize("EASYMODULES.Sections.ComingNext"),
       inDevelopmentLabel: localize("EASYMODULES.Sections.InDevelopment"),
       comingSoonLabel: localize("EASYMODULES.Status.ComingSoon"),
+      moreModulesLabel: localize("EASYMODULES.Footer.MoreModules"),
+      patreonLabel: localize("EASYMODULES.Footer.Patreon"),
+      patreonUrl: EASY_MODULES_CONFIG.patreonUrl,
       featuredEntries: entries.filter(entry => !entry.comingSoon),
       upcomingEntries: entries.filter(entry => entry.comingSoon)
     };

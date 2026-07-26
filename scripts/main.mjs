@@ -257,7 +257,7 @@ Hooks.once("init", () => {
       return definition ? restoreDefaults(definition) : undefined;
     },
     config: Object.freeze({ ...EASY_MODULES_CONFIG }),
-    version: "1.2.1"
+    version: "1.0.0"
   };
 
   game.easyModules = api;
