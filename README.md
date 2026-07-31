@@ -8,8 +8,8 @@ Open supported modules, access their configuration, restore registered settings,
 
 - **EasyLoot — Free:** Generates immersive, balanced drops tailored to each creature's name, type, and Challenge Rating.
 - **EasyMagicItems — Free:** Uses personalized filters to recommend useful magic items for each character.
-- **EasyTrials — Free:** Creates a cinematic experience for saving throws, ability checks, and group checks. 
-- **EasyWounds — Free:** Adds blood overlays, health-based red tinting, critical-health pulses, and evolving visual wounds.
+- **EasyTrials — Early Access:** Creates a cinematic experience for saving throws, ability checks, and group checks.
+- **EasyWounds — Early Access:** Adds blood overlays, health-based red tinting, critical-health pulses, and evolving visual wounds.
 
 Coming next: **EasyShops** and **EasyTraps**.
 
@@ -27,7 +27,7 @@ After installation, enable **EasyModules** in the world's module settings. Gamem
 
 ## Patreon
 
-Support development, access premium modules, and participate in future decisions:
+Support development and help shape future EasyModules releases:
 
 https://www.patreon.com/EasyModules
 

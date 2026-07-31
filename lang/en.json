@@ -13,6 +13,7 @@
   "EASYMODULES.Status.NotInstalled": "Not Installed",
   "EASYMODULES.Access.Free": "Free",
   "EASYMODULES.Access.Premium": "Premium",
+  "EASYMODULES.Access.EarlyAccess": "Early Access",
   "EASYMODULES.Actions.Open": "Open",
   "EASYMODULES.Actions.Configure": "Configure",
   "EASYMODULES.Actions.RestoreDefaults": "Restore Defaults",
@@ -55,6 +56,6 @@
   "EASYMODULES.Suite.EasyShops.Description": "Build and run immersive shops with minimal setup.",
   "EASYMODULES.Suite.EasyTraps.Description": "Create and automate cinematic traps quickly.",
   "EASYMODULES.Footer.MoreModules": "More modules on the way.",
-  "EASYMODULES.Footer.Patreon": "Support and participate on Patreon",
+  "EASYMODULES.Footer.Patreon": "Support development on Patreon",
   "EASYMODULES.Notifications.SettingsRegistryUnavailable": "Could not access the registered settings for {title}."
 }

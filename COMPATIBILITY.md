@@ -38,7 +38,7 @@ After a Foundry update:
 1. Enable EasyModules in a clean v14-compatible world.
 2. Confirm the EasyModules gear appears for Gamemasters only.
 3. Open and resize the dashboard.
-4. Confirm module order, status labels, Free/Premium badges, and upcoming modules.
+4. Confirm module order, status labels, Free/Early Access badges, and upcoming modules.
 5. Test Open, Configure, and Restore Defaults for each active child module.
 6. Confirm inactive or missing modules show the unavailable message without console errors.
 7. Confirm the Patreon link opens in a new browser tab.
