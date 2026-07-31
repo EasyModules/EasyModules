@@ -1,5 +1,7 @@
 # EasyModules
 
+follow for more... https://www.patreon.com/EasyModules
+
 EasyModules is the central launcher and integration hub for the EasyModules suite for Foundry Virtual Tabletop.
 
 Open supported modules, access their configuration, restore registered settings, and discover upcoming tools from one clean interface.
@@ -84,7 +86,7 @@ Supported generic hooks:
 
 ## Support
 
-Report bugs and compatibility issues through the repository's [Issues](https://github.com/EasyModules/EasyModules/issues) page.
+Support development and access EasyModules releases and report bugs through [Patreon](https://www.patreon.com/EasyModules).
 
 ## License and third-party notices
 
