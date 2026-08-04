@@ -8,28 +8,32 @@ Open supported modules, access their configuration, restore registered settings,
 
 ## Modules
 
-- **EasyLoot — Free:** Generates immersive, balanced drops tailored to each creature's name, type, and Challenge Rating.
-- **EasyMagicItems — Free:** Uses personalized filters to recommend useful magic items for each character.
-- **EasyTrials — Early Access:** Creates a cinematic experience for saving throws, ability checks, and group checks.
-- **EasyWounds — Early Access:** Adds blood overlays, health-based red tinting, critical-health pulses, and evolving visual wounds.
+- **EasyLoot — Free:** Generates immersive, balanced loot tailored to each creature's name, type, and Challenge Rating.
+- **EasyMagicItems — Free:** Creates a cinematic magic-item selection experience with personalized recommendations and advanced filters.
+- **EasyTrials — Free:** Creates a cinematic experience for saving throws, skill checks, and group checks.
+- **EasyWounds — Free:** Adds dynamic wound overlays, health-based tinting, critical-health effects, and damage-specific visual wounds.
+- **EasyShops — Free:** Generates balanced and immersive shops based on party level, store specialty, stock categories, and configurable item sources.
+- **EasyTraps — Free:** Provides an intuitive workflow for creating and automating traps with configurable triggers, targets, areas, sounds, and visual effects.
 
-Coming next: **EasyShops** and **EasyTraps**.
+Coming next: **EasyRest**.
 
-The Hub does not bundle the other modules. Each product is installed separately.
+The Hub does not bundle the other modules. Each product is installed separately, allowing you to use only the modules that fit your game.
 
 ## Installation
 
 Install the module in Foundry VTT using this manifest URL:
 
 ```text
-https://raw.githubusercontent.com/EasyModules/EasyModules/main/module.json
+https://github.com/EasyModules/EasyModules/releases/latest/download/module.json
 ```
 
-After installation, enable **EasyModules** in the world's module settings. Gamemasters can open it from the EasyModules gear button in the scene controls.
+After installation, enable **EasyModules** in the world's module settings.
+
+Gamemasters can open the Hub from the EasyModules gear button in the scene controls.
 
 ## Patreon
 
-Support development and help shape future EasyModules releases:
+Follow development, see upcoming projects, and support EasyModules:
 
 https://www.patreon.com/EasyModules
 
@@ -39,6 +43,8 @@ https://www.patreon.com/EasyModules
 - Verified with build 364
 
 See [COMPATIBILITY.md](COMPATIBILITY.md) for update-risk notes and recommended regression tests.
+
+Individual EasyModules products may have their own system or module requirements. Check each module's repository for additional compatibility information.
 
 ## Public API
 
@@ -65,7 +71,13 @@ game.easyModules.register({
 });
 ```
 
-## Integration hooks
+Registered integrations may also be removed:
+
+```js
+game.easyModules.unregister("example-module");
+```
+
+## Integration Hooks
 
 Asynchronous handlers must register their promise immediately with `payload.defer(...)`.
 
@@ -75,7 +87,11 @@ Hooks.on("easyModules:easy-trials:reset", payload => {
 });
 ```
 
-Synchronous handlers may use `payload.markHandled(result)`.
+Synchronous handlers may use:
+
+```js
+payload.markHandled(result);
+```
 
 Supported generic hooks:
 
@@ -86,10 +102,28 @@ Supported generic hooks:
 
 ## Support
 
-Support development and access EasyModules releases and report bugs through [Patreon](https://www.patreon.com/EasyModules).
+Report problems with the EasyModules Hub through GitHub Issues:
 
-## License and third-party notices
+https://github.com/EasyModules/EasyModules/issues
+
+Browse all EasyModules repositories:
+
+https://github.com/EasyModules
+
+Follow release announcements and development updates on Patreon:
+
+https://www.patreon.com/EasyModules
+
+## Development Disclosure
+
+EasyModules is developed with AI-assisted coding and design tools under the direction, testing, review, and maintenance of EasyModules.
+
+The project is not presented as “Zero AI.”
+
+## License and Third-Party Notices
 
 EasyModules is distributed under the proprietary [EasyModules Software License](LICENSE).
 
-Foundry Virtual Tabletop and other third-party names remain the property of their respective owners. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution, trademark, and runtime-integration notices.
+Foundry Virtual Tabletop and other third-party names remain the property of their respective owners.
+
+See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution, trademark, and runtime-integration notices.
