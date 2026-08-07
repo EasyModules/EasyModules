@@ -2,6 +2,14 @@ import { EASY_MODULES_CONFIG } from "./config.mjs";
 import { EASY_MODULES_SUITE } from "./suite.mjs";
 import { EasyModulesRegistry } from "./registry.mjs";
 import { EasyModulesDashboard } from "./dashboard.mjs";
+import {
+  EASY_MODULES_MACRO_FOLDERS,
+  claimEasyModulesMacro,
+  ensureEasyModulesHubLauncherMacro,
+  isOrganizingEasyModulesMacro,
+  organizeEasyModulesMacro,
+  organizeEasyModulesMacros
+} from "./macros.mjs";
 
 const registry = new EasyModulesRegistry();
 let dashboard = null;
@@ -225,6 +233,29 @@ function registerBuiltInEntries() {
   for (const definition of EASY_MODULES_SUITE) registry.register(createEntry(definition));
 }
 
+function foundryGeneration() {
+  const releaseGeneration = Number(game.release?.generation);
+  if (Number.isFinite(releaseGeneration)) return releaseGeneration;
+
+  const versionGeneration = Number(String(game.version ?? "").split(".")[0]);
+  return Number.isFinite(versionGeneration) ? versionGeneration : 14;
+}
+
+function activeSceneControlName() {
+  const control = ui.controls?.control;
+  if (typeof control === "string") return control;
+  return control?.name ?? null;
+}
+
+function eventSceneControlName(event) {
+  const currentTargetName = event?.currentTarget?.dataset?.control;
+  if (currentTargetName) return currentTargetName;
+
+  const target = event?.target;
+  const controlElement = target?.closest?.("[data-control]");
+  return controlElement?.dataset?.control ?? null;
+}
+
 Hooks.once("init", () => {
   registerBuiltInEntries();
 
@@ -261,7 +292,11 @@ Hooks.once("init", () => {
     },
     config: Object.freeze({ ...EASY_MODULES_CONFIG }),
     refresh: refreshDashboard,
-    version: "1.0.6"
+    organizeMacros: organizeEasyModulesMacros,
+    organizeMacro: (macro, options) => organizeEasyModulesMacro(macro, options),
+    claimMacro: (macro, ownerId) => claimEasyModulesMacro(macro, ownerId),
+    macroFolders: EASY_MODULES_MACRO_FOLDERS,
+    version: "1.0.7"
   };
 
   game.easyModules = api;
@@ -277,6 +312,12 @@ Hooks.once("init", () => {
 Hooks.on("getSceneControlButtons", controls => {
   if (!game.user?.isGM || !controls || typeof controls !== "object") return;
 
+  // Foundry v13 requires a SceneControl to own an active tool and tools record.
+  // EasyModules is a launcher, not a canvas mode, so v13 deliberately receives
+  // no scene-control entry. The ready hook creates a dedicated launcher macro
+  // instead. Foundry v14 supports the original lightweight top-level control.
+  if (foundryGeneration() < 14) return;
+
   const controlName = EASY_MODULES_CONFIG.control.name;
   if (controls[controlName]) return;
 
@@ -285,55 +326,63 @@ Hooks.on("getSceneControlButtons", controls => {
     .map(control => Number(control?.order))
     .filter(Number.isFinite);
   const order = existingOrders.length ? Math.max(...existingOrders) + 1 : 0;
-  const generation = Number(game.release?.generation ?? game.version?.split?.(".")?.[0] ?? 14);
 
-  // v14 supports a lightweight top-level SceneControl, which restores the
-  // original EasyModules launcher: its own gear in the left scene controls.
-  if (generation >= 14) {
-    controls[controlName] = {
-      name: controlName,
-      title,
-      icon: EASY_MODULES_CONFIG.control.icon,
-      order,
-      visible: true,
-      onChange: (_event, active) => {
-        if (active) return openDashboard();
-        return undefined;
-      }
-    };
-    return;
-  }
-
-  // v13 requires SceneControl.activeTool and a tools record. Keep the Hub as
-  // its own top-level control instead of attaching it to Tokens/Actors. The
-  // control itself opens the dashboard; the single child button is a v13-safe
-  // fallback and opens the same dashboard if selected directly.
-  const openToolName = `${controlName}-open`;
   controls[controlName] = {
     name: controlName,
     title,
     icon: EASY_MODULES_CONFIG.control.icon,
     order,
     visible: true,
-    activeTool: openToolName,
-    tools: {
-      [openToolName]: {
-        name: openToolName,
-        title,
-        icon: EASY_MODULES_CONFIG.control.icon,
-        order: 0,
-        button: true,
-        visible: true,
-        onChange: () => openDashboard()
-      }
-    },
-    onChange: (_event, active) => {
-      if (active) return openDashboard();
+    onChange: (event, active) => {
+      if (active !== true) return undefined;
+      const eventControl = eventSceneControlName(event);
+      if (eventControl && eventControl !== controlName) return undefined;
+
+      // Wait until Foundry has committed the requested control. This extra
+      // guard keeps deactivation/control-switch events from reopening a Hub
+      // window the user intentionally closed, while the event identity still
+      // allows the original v14 gear click to open if UI state is one tick late.
+      queueMicrotask(() => {
+        const currentControl = activeSceneControlName();
+        if (!eventControl && currentControl && currentControl !== controlName) return;
+        openDashboard();
+      });
       return undefined;
     }
   };
 });
 
-Hooks.once("ready", () => {
+Hooks.on("createMacro", (macro, _options, userId) => {
+  if (!game.user?.isGM || userId !== game.user.id) return;
+  organizeEasyModulesMacro(macro).catch(error => {
+    console.error(`EasyModules | Could not organize newly created macro ${macro?.name ?? macro?.id ?? "unknown"}.`, error);
+  });
+});
+
+Hooks.on("updateMacro", (macro, changes, _options, userId) => {
+  if (!game.user?.isGM || userId !== game.user.id || isOrganizingEasyModulesMacro(macro?.id)) return;
+  if (!("command" in (changes ?? {})) && !("flags" in (changes ?? {}))) return;
+
+  organizeEasyModulesMacro(macro).catch(error => {
+    console.error(`EasyModules | Could not reorganize updated macro ${macro?.name ?? macro?.id ?? "unknown"}.`, error);
+  });
+});
+
+Hooks.once("ready", async () => {
   console.log(`${EASY_MODULES_CONFIG.moduleId} | Ready. API: game.easyModules`);
+
+  if (!game.user?.isGM) return;
+
+  if (foundryGeneration() < 14) {
+    try {
+      await ensureEasyModulesHubLauncherMacro();
+    } catch (error) {
+      console.error("EasyModules | Could not create the Foundry v13 Hub launcher macro.", error);
+    }
+  }
+
+  const result = await organizeEasyModulesMacros();
+  if (result.moved || result.tagged) {
+    console.log(`EasyModules | Organized ${result.managed} macro(s): ${result.moved} moved, ${result.tagged} tagged.`);
+  }
 });

@@ -27,7 +27,48 @@ Install the module in Foundry VTT using this manifest URL:
 https://github.com/EasyModules/EasyModules/releases/latest/download/module.json
 ```
 
-After installation, enable **EasyModules** in the world's module settings. Gamemasters can open it from the dedicated EasyModules gear control in the left scene controls.
+After installation, enable **EasyModules** in the world's module settings.
+
+- **Foundry v14:** Gamemasters get the original dedicated **EasyModules** gear in the left scene controls. It is not placed inside Token, Tiles, or another native control group.
+- **Foundry v13:** the Hub deliberately does not add a scene-control button because v13 requires every top-level SceneControl to own an active tool. Instead, the Hub creates **Open EasyModules Hub** in `EASYMODULES/EasyModules`; drag that macro to the hotbar if desired.
+
+In both versions the public `game.easyModules.open()` API remains available.
+
+## Macro organization
+
+For Gamemasters, the Hub automatically keeps recognized EasyModules macros under a shared folder structure:
+
+```text
+EASYMODULES
+├── EasyModules
+├── EasyLoot
+├── EasyMagicItems
+├── EasyTrials
+├── EasyWounds
+├── EasyShops
+├── EasyTraps
+└── EasyQOL
+```
+
+Subfolders are created only when a matching macro exists. Existing recognized macros are migrated when the world becomes ready, and newly created or retagged EasyModules macros are organized automatically.
+
+The Hub identifies managed macros conservatively through the shared `flags.easy-modules.owner` marker, existing module-owned flags, or an explicit EasyModules module/API reference in the macro command. Macros unrelated to EasyModules are not moved.
+
+Child modules may explicitly claim a macro and let the Hub place it correctly:
+
+```js
+await game.easyModules.claimMacro(macro, "easy-traps");
+```
+
+The owner marker used by the Hub is:
+
+```js
+flags: {
+  "easy-modules": {
+    owner: "easy-traps"
+  }
+}
+```
 
 ## More modules
 
@@ -51,6 +92,7 @@ await game.easyModules.open();
 await game.easyModules.openConfiguration("easy-loot");
 await game.easyModules.restoreDefaults("easy-loot");
 await game.easyModules.refresh();
+await game.easyModules.organizeMacros();
 ```
 
 Other modules may register or replace dashboard entries:
@@ -122,6 +164,6 @@ The project is not presented as “Zero AI.”
 
 ## License and third-party notices
 
-EasyModules is distributed under the proprietary [EasyModules Software License](LICENSE).
+EasyModules is distributed under the proprietary [EasyModules Software License — Version 1.0](LICENSE).
 
 Foundry Virtual Tabletop and other third-party names remain the property of their respective owners. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution, trademark, and runtime-integration notices.

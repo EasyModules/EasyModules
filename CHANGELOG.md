@@ -1,10 +1,24 @@
 # Changelog
 
+## 1.0.7
+
+- Restored the original dedicated EasyModules top-level gear launcher on Foundry v14; it is no longer attached to Token or any other native scene-control group.
+- Added a stronger v14 launcher guard so closing the Hub and then switching to Actors, Tiles, Tokens, or another scene control does not reopen it.
+- Removed the v13 SceneControl compatibility shim entirely. Foundry v13 now receives no EasyModules scene-control button, avoiding invalid/persistent tool-state workarounds.
+- Added an idempotent Foundry v13 fallback macro, **Open EasyModules Hub**, automatically created for Gamemasters in `EASYMODULES/EasyModules`.
+- Added automatic EasyModules macro organization for Gamemasters under `EASYMODULES/<module>`.
+- Added conservative migration of existing macros using the shared EasyModules owner flag, module-owned flags, and explicit EasyModules module/API references. Unrelated macros are left untouched.
+- Added automatic organization for newly created or retagged managed macros.
+- Added `game.easyModules.organizeMacros()`, `game.easyModules.organizeMacro(...)`, `game.easyModules.claimMacro(...)`, and macro-folder metadata to the public Hub API.
+- Included EasyQOL and the Hub itself in the shared macro-folder registry without changing the dashboard release list.
+- Standardized the Hub license to **EasyModules Software License — Version 1.0**.
+- Synchronized package metadata and documentation for v1.0.7.
+
 ## 1.0.6
 
 - Prepared the Hub for the next GitHub release with synchronized version metadata and documentation.
 - Standardized the visible package title as **EasyModules Hub** while preserving the `easy-modules` package ID and `game.easyModules` public API.
-- Updated scene-control callbacks so the Hub opens only when its control is activated, preventing unintended reopen behavior when switching away from the control on Foundry v13 or v14.
+- Updated scene-control callbacks so the Hub opens only when its control is activated, as an initial mitigation for unintended reopen behavior when switching away from the control on Foundry v13 or v14.
 - Updated compatibility documentation for the dedicated top-level scene control and Foundry v13/v14 support.
 - Restored the standard Patreon follow line and development disclosure in the README.
 
