@@ -16,7 +16,7 @@ The EasyModules interface uses icon classes made available by the Foundry Virtua
 
 ## Integrated Modules and Products
 
-Names such as EasyLoot, EasyMagicItems, EasyTrials, EasyWounds, EasyShops, and EasyTraps identify products in the EasyModules suite.
+Names such as EasyLoot, EasyMagicItems, EasyTrials, EasyWounds, EasyShops, EasyTraps, and EasyRest identify products in the EasyModules suite.
 
 Any other third-party product, module, game, or system names that may be displayed through registered integrations remain the property of their respective owners. Their use is solely for identification, interoperability, and descriptive purposes and does not imply endorsement.
 

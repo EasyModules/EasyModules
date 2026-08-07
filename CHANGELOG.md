@@ -1,5 +1,48 @@
 # Changelog
 
+## 1.0.6
+
+- Prepared the Hub for the next GitHub release with synchronized version metadata and documentation.
+- Standardized the visible package title as **EasyModules Hub** while preserving the `easy-modules` package ID and `game.easyModules` public API.
+- Updated scene-control callbacks so the Hub opens only when its control is activated, preventing unintended reopen behavior when switching away from the control on Foundry v13 or v14.
+- Updated compatibility documentation for the dedicated top-level scene control and Foundry v13/v14 support.
+- Restored the standard Patreon follow line and development disclosure in the README.
+
+## 1.0.5
+
+- Restored the dedicated EasyModules top-level gear control in the left scene controls.
+- Removed the v1.0.4 workaround that attached the Hub launcher to native Token/Actor controls.
+- Added a Foundry v13-specific SceneControl fallback with a valid active tool while preserving the original standalone launcher behavior on v14.
+- Updated README launcher instructions and the public API version.
+
+## 1.0.4
+
+- Restored Foundry VTT v13 compatibility in the manifest.
+- Replaced the v14-only empty SceneControl group with a real button tool in the native Token controls.
+- Preserved the same EasyModules dashboard launch behavior on Foundry v13 and v14.
+- Updated compatibility documentation and the public API version.
+
+## 1.0.3
+
+- Marked EasyTraps as a released Free module, leaving EasyRest as the only Coming Up Next entry.
+- Connected the EasyTraps launch action to its public `createTrap` API, with library and manager fallbacks for compatibility.
+- Connected EasyTraps configuration to its public `openSettings` API and retained generic reset fallback support.
+- Updated release documentation, compatibility checks, and the Hub public API version.
+- Adjusted the single upcoming-module card to use the full Coming Up Next row.
+- Revalidated built-in module IDs and historical aliases so installed suite modules resolve to their fixed dashboard positions.
+- Updated alias resolution to prefer an active installed package when both a current ID and a historical ID are present.
+
+## 1.0.2
+
+- Reworked the Hub into a cleaner, compact two-column layout so released modules and upcoming tools remain visible at common desktop window sizes.
+- Added a Patreon discovery banner at the top of the Hub with neutral “check out more modules” wording.
+- Marked EasyLoot, EasyMagicItems, EasyTrials, EasyWounds, and EasyShops as released Free modules.
+- Moved EasyShops out of Coming Up Next and enabled its standard launch, configuration, reset, API, and hook integration paths.
+- Added EasyRest to Coming Up Next with reserved module IDs, global API aliases, launch/configuration/reset method conventions, and registry support.
+- Added `game.easyModules.refresh()` plus `easyModulesReady` and `easyModules:ready` lifecycle hooks for future modules.
+- Preserved existing module IDs, API aliases, integration hooks, launch methods, configuration methods, and reset methods.
+- Updated documentation and performed a consistency and cleanup pass.
+
 ## 1.0.1
 
 - Marked EasyLoot and EasyMagicItems as Free in the Hub.

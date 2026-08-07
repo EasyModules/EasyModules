@@ -1,9 +1,9 @@
-# EasyModules 1.0.0 — Compatibility and Update Resilience
+# EasyModules Hub 1.0.6 — Compatibility and Update Resilience
 
 ## Supported environment
 
-- Foundry Virtual Tabletop v14
-- Verified with build 364
+- Foundry Virtual Tabletop v13 and v14
+- Verified with v14 build 364
 
 EasyModules uses Foundry's public `ApplicationV2`, Handlebars application, dialog, hook, settings, notification, and module API surfaces.
 
@@ -35,14 +35,14 @@ A future Foundry major version may require updates if any of these public interf
 
 After a Foundry update:
 
-1. Enable EasyModules in a clean v14-compatible world.
-2. Confirm the EasyModules gear appears for Gamemasters only.
+1. Enable EasyModules in clean v13- and v14-compatible worlds.
+2. Confirm the dedicated EasyModules gear control appears in the left scene controls for Gamemasters only.
 3. Open and resize the dashboard.
-4. Confirm module order, status labels, Free/Early Access badges, and upcoming modules.
+4. Confirm module order, released Free badges, and the EasyRest upcoming card.
 5. Test Open, Configure, and Restore Defaults for each active child module.
 6. Confirm inactive or missing modules show the unavailable message without console errors.
 7. Confirm the Patreon link opens in a new browser tab.
-8. Test dynamic registration and unregistration through `game.easyModules`.
+8. Test dynamic registration, unregistration, and refresh through `game.easyModules`.
 9. Review the browser console for warnings or deprecated API notices.
 
 ## Child-module compatibility

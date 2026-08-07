@@ -1,10 +1,10 @@
 {
   "id": "easy-modules",
-  "title": "EasyModules",
+  "title": "EasyModules Hub",
   "description": "The central launcher and integration hub for the EasyModules suite.",
-  "version": "1.0.1",
+  "version": "1.0.6",
   "compatibility": {
-    "minimum": "14",
+    "minimum": "13",
     "verified": "14.364"
   },
   "authors": [

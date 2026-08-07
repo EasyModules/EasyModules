@@ -29,11 +29,14 @@ function resolveLocalizedText(key, value, fallbackKey) {
 }
 
 function findInstalledModule(entry) {
+  let installedFallback = null;
   for (const moduleId of entry.moduleIds ?? [entry.moduleId]) {
     const foundryModule = game.modules.get(moduleId);
-    if (foundryModule) return foundryModule;
+    if (!foundryModule) continue;
+    if (foundryModule.active) return foundryModule;
+    installedFallback ??= foundryModule;
   }
-  return null;
+  return installedFallback;
 }
 
 export class EasyModulesDashboard extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -47,8 +50,8 @@ export class EasyModulesDashboard extends HandlebarsApplicationMixin(Application
       resizable: true
     },
     position: {
-      width: 760,
-      height: 760
+      width: 980,
+      height: 720
     },
     actions: {
       launch: function(event, target) {
@@ -134,8 +137,8 @@ export class EasyModulesDashboard extends HandlebarsApplicationMixin(Application
       comingNextLabel: localize("EASYMODULES.Sections.ComingNext"),
       inDevelopmentLabel: localize("EASYMODULES.Sections.InDevelopment"),
       comingSoonLabel: localize("EASYMODULES.Status.ComingSoon"),
-      moreModulesLabel: localize("EASYMODULES.Footer.MoreModules"),
-      patreonLabel: localize("EASYMODULES.Footer.Patreon"),
+      patreonLead: localize("EASYMODULES.Header.PatreonLead"),
+      patreonLabel: localize("EASYMODULES.Header.Patreon"),
       patreonUrl: EASY_MODULES_CONFIG.patreonUrl,
       featuredEntries: entries.filter(entry => !entry.comingSoon),
       upcomingEntries: entries.filter(entry => entry.comingSoon)

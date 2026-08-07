@@ -32,11 +32,14 @@ function findModule(definition) {
     ? definition.moduleIds
     : [definition?.moduleId ?? definition?.id].filter(Boolean);
 
+  let installedFallback = null;
   for (const moduleId of ids) {
     const foundryModule = game.modules.get(moduleId);
-    if (foundryModule) return foundryModule;
+    if (!foundryModule) continue;
+    if (foundryModule.active) return foundryModule;
+    installedFallback ??= foundryModule;
   }
-  return null;
+  return installedFallback;
 }
 
 function findApi(definition) {
@@ -257,10 +260,13 @@ Hooks.once("init", () => {
       return definition ? restoreDefaults(definition) : undefined;
     },
     config: Object.freeze({ ...EASY_MODULES_CONFIG }),
-    version: "1.0.0"
+    refresh: refreshDashboard,
+    version: "1.0.6"
   };
 
   game.easyModules = api;
+  Hooks.callAll("easyModulesReady", api);
+  Hooks.callAll("easyModules:ready", api);
   const self = game.modules.get(EASY_MODULES_CONFIG.moduleId);
   if (self) self.api = api;
 
@@ -269,24 +275,63 @@ Hooks.once("init", () => {
 });
 
 Hooks.on("getSceneControlButtons", controls => {
-  if (!game.user?.isGM) return;
+  if (!game.user?.isGM || !controls || typeof controls !== "object") return;
 
-  const control = {
-    name: EASY_MODULES_CONFIG.control.name,
-    title: game.i18n.localize(EASY_MODULES_CONFIG.control.titleKey),
-    icon: EASY_MODULES_CONFIG.control.icon,
-    order: 90,
-    visible: true,
-    tools: {},
-    onChange: (_event, active) => { if (active) openDashboard(); }
-  };
+  const controlName = EASY_MODULES_CONFIG.control.name;
+  if (controls[controlName]) return;
 
-  if (Array.isArray(controls)) {
-    if (!controls.some(candidate => candidate.name === control.name)) controls.push(control);
+  const title = game.i18n.localize(EASY_MODULES_CONFIG.control.titleKey);
+  const existingOrders = Object.values(controls)
+    .map(control => Number(control?.order))
+    .filter(Number.isFinite);
+  const order = existingOrders.length ? Math.max(...existingOrders) + 1 : 0;
+  const generation = Number(game.release?.generation ?? game.version?.split?.(".")?.[0] ?? 14);
+
+  // v14 supports a lightweight top-level SceneControl, which restores the
+  // original EasyModules launcher: its own gear in the left scene controls.
+  if (generation >= 14) {
+    controls[controlName] = {
+      name: controlName,
+      title,
+      icon: EASY_MODULES_CONFIG.control.icon,
+      order,
+      visible: true,
+      onChange: (_event, active) => {
+        if (active) return openDashboard();
+        return undefined;
+      }
+    };
     return;
   }
 
-  if (controls && typeof controls === "object") controls[control.name] ??= control;
+  // v13 requires SceneControl.activeTool and a tools record. Keep the Hub as
+  // its own top-level control instead of attaching it to Tokens/Actors. The
+  // control itself opens the dashboard; the single child button is a v13-safe
+  // fallback and opens the same dashboard if selected directly.
+  const openToolName = `${controlName}-open`;
+  controls[controlName] = {
+    name: controlName,
+    title,
+    icon: EASY_MODULES_CONFIG.control.icon,
+    order,
+    visible: true,
+    activeTool: openToolName,
+    tools: {
+      [openToolName]: {
+        name: openToolName,
+        title,
+        icon: EASY_MODULES_CONFIG.control.icon,
+        order: 0,
+        button: true,
+        visible: true,
+        onChange: () => openDashboard()
+      }
+    },
+    onChange: (_event, active) => {
+      if (active) return openDashboard();
+      return undefined;
+    }
+  };
 });
 
 Hooks.once("ready", () => {

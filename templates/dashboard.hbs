@@ -1,4 +1,10 @@
 <div class="easy-modules-shell">
+  <a class="easy-modules-patreon-banner" href="{{patreonUrl}}" target="_blank" rel="noopener noreferrer">
+    <span>{{patreonLead}}</span>
+    <strong>{{patreonLabel}}</strong>
+    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+  </a>
+
   <header class="easy-modules-header">
     <div class="easy-modules-brand-icon" aria-hidden="true">
       <span class="easy-modules-brand-core"><i class="{{brandIconClass}}"></i></span>
@@ -19,33 +25,35 @@
     <div class="easy-modules-list featured">
       {{#each featuredEntries}}
         <article class="easy-modules-card {{stateClass}} {{#unless hasIcon}}no-icon{{/unless}}">
-          {{#if hasImageIcon}}
-            <img class="easy-modules-card-icon" src="{{iconUrl}}" alt="" />
-          {{else if hasFontIcon}}
-            <div class="easy-modules-card-icon easy-modules-font-icon" aria-hidden="true">
-              <i class="{{iconClass}}"></i>
-            </div>
-          {{/if}}
+          <div class="easy-modules-card-main">
+            {{#if hasImageIcon}}
+              <img class="easy-modules-card-icon" src="{{iconUrl}}" alt="" />
+            {{else if hasFontIcon}}
+              <div class="easy-modules-card-icon easy-modules-font-icon" aria-hidden="true">
+                <i class="{{iconClass}}"></i>
+              </div>
+            {{/if}}
 
-          <div class="easy-modules-card-copy">
-            <div class="easy-modules-card-title-row">
-              <h3>{{title}}</h3>
-              {{#if accessLabel}}<span class="easy-modules-access-badge {{accessTier}}">{{accessLabel}}</span>{{/if}}
-              {{#if version}}<span class="easy-modules-version">v{{version}}</span>{{/if}}
-              <span class="easy-modules-status">{{stateLabel}}</span>
+            <div class="easy-modules-card-copy">
+              <div class="easy-modules-card-title-row">
+                <h3>{{title}}</h3>
+                {{#if accessLabel}}<span class="easy-modules-access-badge {{accessTier}}">{{accessLabel}}</span>{{/if}}
+                {{#if version}}<span class="easy-modules-version">v{{version}}</span>{{/if}}
+                <span class="easy-modules-status">{{stateLabel}}</span>
+              </div>
+              <p>{{description}}</p>
             </div>
-            <p>{{description}}</p>
           </div>
 
           <div class="easy-modules-card-actions">
             {{#if canConfigure}}
-              <button class="secondary" type="button" data-action="configure" data-module-id="{{id}}" title="{{configureTooltip}}">
-                <i class="fas fa-cog"></i> {{configLabel}}
+              <button class="secondary icon-button" type="button" data-action="configure" data-module-id="{{id}}" title="{{configureTooltip}}" aria-label="{{configureTooltip}}">
+                <i class="fas fa-cog"></i><span>{{configLabel}}</span>
               </button>
             {{/if}}
             {{#if canReset}}
-              <button class="danger-ghost" type="button" data-action="reset" data-module-id="{{id}}" title="{{resetTooltip}}">
-                <i class="fas fa-rotate-left"></i> {{resetLabel}}
+              <button class="danger-ghost icon-button" type="button" data-action="reset" data-module-id="{{id}}" title="{{resetTooltip}}" aria-label="{{resetTooltip}}">
+                <i class="fas fa-rotate-left"></i><span>{{resetLabel}}</span>
               </button>
             {{/if}}
             <button class="primary" type="button" data-action="launch" data-module-id="{{id}}">
@@ -74,19 +82,14 @@
             </div>
           {{/if}}
           <div>
-            <h3>{{title}}</h3>
+            <div class="easy-modules-upcoming-title-row">
+              <h3>{{title}}</h3>
+              <span class="easy-modules-coming-badge">{{../comingSoonLabel}}</span>
+            </div>
             <p>{{description}}</p>
           </div>
-          <span class="easy-modules-coming-badge">{{../comingSoonLabel}}</span>
         </article>
       {{/each}}
     </div>
   </section>
-
-  <footer class="easy-modules-footer">
-    <span class="easy-modules-more">{{moreModulesLabel}}</span>
-    <a class="easy-modules-patreon" href="{{patreonUrl}}" target="_blank" rel="noopener noreferrer">
-      {{patreonLabel}} <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
-    </a>
-  </footer>
 </div>
