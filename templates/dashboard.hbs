@@ -16,80 +16,84 @@
     </div>
   </header>
 
-  <section class="easy-modules-section">
-    <div class="easy-modules-section-heading">
-      <h2>{{availableModulesLabel}}</h2>
-      <span>{{toolCountLabel}}</span>
-    </div>
+  <div class="easy-modules-scroll">
+    <section class="easy-modules-section">
+      <div class="easy-modules-section-heading">
+        <h2>{{availableModulesLabel}}</h2>
+        <span>{{toolCountLabel}}</span>
+      </div>
 
-    <div class="easy-modules-list featured">
-      {{#each featuredEntries}}
-        <article class="easy-modules-card {{stateClass}} {{#unless hasIcon}}no-icon{{/unless}}">
-          <div class="easy-modules-card-main">
+      <div class="easy-modules-list featured">
+        {{#each featuredEntries}}
+          <article class="easy-modules-card {{stateClass}} {{#unless hasIcon}}no-icon{{/unless}}">
+            <div class="easy-modules-card-main">
+              {{#if hasImageIcon}}
+                <img class="easy-modules-card-icon" src="{{iconUrl}}" alt="" />
+              {{else if hasFontIcon}}
+                <div class="easy-modules-card-icon easy-modules-font-icon" aria-hidden="true">
+                  <i class="{{iconClass}}"></i>
+                </div>
+              {{/if}}
+
+              <div class="easy-modules-card-copy">
+                <div class="easy-modules-card-title-row">
+                  <h3>{{title}}</h3>
+                  {{#if accessLabel}}<span class="easy-modules-access-badge {{accessTier}}">{{accessLabel}}</span>{{/if}}
+                  {{#if version}}<span class="easy-modules-version">v{{version}}</span>{{/if}}
+                  <span class="easy-modules-status">{{stateLabel}}</span>
+                </div>
+                <p>{{description}}</p>
+              </div>
+            </div>
+
+            <div class="easy-modules-card-actions">
+              {{#if canConfigure}}
+                <button class="secondary icon-button" type="button" data-action="configure" data-module-id="{{id}}" title="{{configureTooltip}}" aria-label="{{configureTooltip}}">
+                  <i class="fas fa-cog"></i><span>{{configLabel}}</span>
+                </button>
+              {{/if}}
+              {{#if canReset}}
+                <button class="danger-ghost icon-button" type="button" data-action="reset" data-module-id="{{id}}" title="{{resetTooltip}}" aria-label="{{resetTooltip}}">
+                  <i class="fas fa-rotate-left"></i><span>{{resetLabel}}</span>
+                </button>
+              {{/if}}
+              <button class="primary" type="button" data-action="launch" data-module-id="{{id}}">
+                {{actionLabel}}
+              </button>
+            </div>
+          </article>
+        {{/each}}
+      </div>
+    </section>
+
+    {{#if upcomingEntries}}
+    <section class="easy-modules-section upcoming-section">
+      <div class="easy-modules-section-heading">
+        <h2>{{comingNextLabel}}</h2>
+        <span>{{inDevelopmentLabel}}</span>
+      </div>
+
+      <div class="easy-modules-upcoming-grid">
+        {{#each upcomingEntries}}
+          <article class="easy-modules-upcoming-card {{#unless hasIcon}}no-icon{{/unless}}">
             {{#if hasImageIcon}}
-              <img class="easy-modules-card-icon" src="{{iconUrl}}" alt="" />
+              <img class="easy-modules-upcoming-icon" src="{{iconUrl}}" alt="" />
             {{else if hasFontIcon}}
-              <div class="easy-modules-card-icon easy-modules-font-icon" aria-hidden="true">
+              <div class="easy-modules-upcoming-icon easy-modules-font-icon" aria-hidden="true">
                 <i class="{{iconClass}}"></i>
               </div>
             {{/if}}
-
-            <div class="easy-modules-card-copy">
-              <div class="easy-modules-card-title-row">
+            <div>
+              <div class="easy-modules-upcoming-title-row">
                 <h3>{{title}}</h3>
-                {{#if accessLabel}}<span class="easy-modules-access-badge {{accessTier}}">{{accessLabel}}</span>{{/if}}
-                {{#if version}}<span class="easy-modules-version">v{{version}}</span>{{/if}}
-                <span class="easy-modules-status">{{stateLabel}}</span>
+                <span class="easy-modules-coming-badge">{{../comingSoonLabel}}</span>
               </div>
               <p>{{description}}</p>
             </div>
-          </div>
-
-          <div class="easy-modules-card-actions">
-            {{#if canConfigure}}
-              <button class="secondary icon-button" type="button" data-action="configure" data-module-id="{{id}}" title="{{configureTooltip}}" aria-label="{{configureTooltip}}">
-                <i class="fas fa-cog"></i><span>{{configLabel}}</span>
-              </button>
-            {{/if}}
-            {{#if canReset}}
-              <button class="danger-ghost icon-button" type="button" data-action="reset" data-module-id="{{id}}" title="{{resetTooltip}}" aria-label="{{resetTooltip}}">
-                <i class="fas fa-rotate-left"></i><span>{{resetLabel}}</span>
-              </button>
-            {{/if}}
-            <button class="primary" type="button" data-action="launch" data-module-id="{{id}}">
-              {{actionLabel}}
-            </button>
-          </div>
-        </article>
-      {{/each}}
-    </div>
-  </section>
-
-  <section class="easy-modules-section upcoming-section">
-    <div class="easy-modules-section-heading">
-      <h2>{{comingNextLabel}}</h2>
-      <span>{{inDevelopmentLabel}}</span>
-    </div>
-
-    <div class="easy-modules-upcoming-grid">
-      {{#each upcomingEntries}}
-        <article class="easy-modules-upcoming-card {{#unless hasIcon}}no-icon{{/unless}}">
-          {{#if hasImageIcon}}
-            <img class="easy-modules-upcoming-icon" src="{{iconUrl}}" alt="" />
-          {{else if hasFontIcon}}
-            <div class="easy-modules-upcoming-icon easy-modules-font-icon" aria-hidden="true">
-              <i class="{{iconClass}}"></i>
-            </div>
-          {{/if}}
-          <div>
-            <div class="easy-modules-upcoming-title-row">
-              <h3>{{title}}</h3>
-              <span class="easy-modules-coming-badge">{{../comingSoonLabel}}</span>
-            </div>
-            <p>{{description}}</p>
-          </div>
-        </article>
-      {{/each}}
-    </div>
-  </section>
+          </article>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
+  </div>
 </div>

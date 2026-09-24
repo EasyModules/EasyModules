@@ -4,20 +4,23 @@ Follow for more... https://www.patreon.com/EasyModules
 
 EasyModules is the central launcher and integration hub for the EasyModules suite for Foundry Virtual Tabletop.
 
-Open supported modules, access their configuration, restore registered settings, and discover upcoming tools from one compact interface.
+Open supported modules, access their configuration, restore registered settings, and organize recognized EasyModules macros from one compact interface.
 
-## Released modules
+## Supported modules
 
-- **EasyLoot — Free:** Generates immersive, balanced drops tailored to each creature's name, type, and Challenge Rating.
-- **EasyMagicItems — Free:** Uses personalized filters to recommend useful magic items for each character.
-- **EasyTrials — Free:** Creates a cinematic experience for saving throws, ability checks, and group checks.
-- **EasyWounds — Free:** Adds health-based tinting, pulses, blood overlays, and evolving visual wounds.
-- **EasyShops — Free:** Builds and runs immersive shops with minimal setup.
-- **EasyTraps — Free:** Creates and automates cinematic traps quickly.
+- EasyCharacter
+- EasyFix
+- EasyFlight
+- EasyLoot
+- EasyMagicItems
+- EasyQOL
+- EasyRest
+- EasyShops
+- EasyTraps
+- EasyTrials
+- EasyWounds
 
-Coming next: **EasyRest**.
-
-The Hub does not bundle the other modules. Each product is installed separately.
+The Hub does not bundle the other modules. Each product is installed separately and appears in the dashboard when installed.
 
 ## Installation
 
@@ -41,13 +44,17 @@ For Gamemasters, the Hub automatically keeps recognized EasyModules macros under
 ```text
 EASYMODULES
 ├── EasyModules
+├── EasyCharacter
+├── EasyFix
+├── EasyFlight
 ├── EasyLoot
 ├── EasyMagicItems
+├── EasyQOL
+├── EasyRest
 ├── EasyTrials
 ├── EasyWounds
 ├── EasyShops
-├── EasyTraps
-└── EasyQOL
+└── EasyTraps
 ```
 
 Subfolders are created only when a matching macro exists. Existing recognized macros are migrated when the world becomes ready, and newly created or retagged EasyModules macros are organized automatically.

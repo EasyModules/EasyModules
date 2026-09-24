@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.8
+
+- Expanded the built-in dashboard catalog to recognize EasyCharacter, EasyFix, EasyFlight, EasyQOL, and the released EasyRest module alongside the existing suite modules.
+- Removed EasyRest from the Coming Up Next area and hid that area when it has no entries.
+- Added a dedicated, visible vertical scroll area for the module cards so the complete catalog remains accessible at any window size.
+- Added the new suite modules to the shared macro-owner registry while preserving the existing conservative macro-recognition rules.
+- Updated the Hub copy and release documentation to describe the supported catalog rather than a release-status list.
+
 ## 1.0.7
 
 - Restored the original dedicated EasyModules top-level gear launcher on Foundry v14; it is no longer attached to Token or any other native scene-control group.

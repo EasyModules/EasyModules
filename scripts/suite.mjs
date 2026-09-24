@@ -1,5 +1,31 @@
 export const EASY_MODULES_SUITE = [
   {
+    id: "easy-character",
+    moduleIds: ["easy-character"],
+    globalApis: ["dndCharacterCreator"],
+    title: "EasyCharacter",
+    descriptionKey: "EASYMODULES.Suite.EasyCharacter.Description",
+    actionLabelKey: "EASYMODULES.Suite.EasyCharacter.Action",
+    iconClass: "fas fa-user-plus",
+    order: 5,
+    launchMethods: ["open", "launch"],
+    configureMethods: ["openConfiguration", "openConfig", "configure"],
+    resetMethods: ["resetSettings", "restoreDefaults", "resetToDefaults", "resetConfiguration"]
+  },
+  {
+    id: "easy-qol",
+    moduleIds: ["easy-qol"],
+    globalApis: ["easyQOL"],
+    title: "EasyQOL",
+    descriptionKey: "EASYMODULES.Suite.EasyQOL.Description",
+    actionLabelKey: "EASYMODULES.Suite.EasyQOL.Action",
+    iconClass: "fas fa-wand-magic-sparkles",
+    order: 45,
+    launchMethods: ["openConfiguration", "configure"],
+    configureMethods: ["openConfiguration", "configure"],
+    resetMethods: ["restoreDefaults", "resetSettings", "resetToDefaults", "resetConfiguration"]
+  },
+  {
     id: "easy-loot",
     moduleIds: ["easy-loot", "auto-loot"],
     globalApis: ["easyLoot", "autoLoot"],
@@ -98,12 +124,38 @@ export const EASY_MODULES_SUITE = [
     globalApis: ["easyRest"],
     title: "EasyRest",
     descriptionKey: "EASYMODULES.Suite.EasyRest.Description",
-    actionLabelKey: "EASYMODULES.Status.ComingSoon",
+    actionLabelKey: "EASYMODULES.Suite.EasyRest.Action",
     iconClass: "fas fa-campground",
-    status: "coming-soon",
     order: 70,
     launchMethods: ["open", "start", "launch"],
     configureMethods: ["openConfiguration", "openConfig", "configure"],
+    resetMethods: ["resetSettings", "restoreDefaults", "resetToDefaults", "resetConfiguration"]
+  },
+  {
+    id: "easy-fix",
+    moduleIds: ["easy-fix"],
+    globalApis: ["easyFix"],
+    title: "EasyFix",
+    descriptionKey: "EASYMODULES.Suite.EasyFix.Description",
+    actionLabelKey: "EASYMODULES.Suite.EasyFix.Action",
+    iconClass: "fas fa-screwdriver-wrench",
+    order: 80,
+    launchMethods: ["openConfiguration", "configure"],
+    configureMethods: ["openConfiguration", "configure"],
+    resetMethods: ["restoreDefaults", "resetSettings", "resetToDefaults", "resetConfiguration"]
+  },
+  {
+    id: "easy-flight",
+    moduleIds: ["easy-flight"],
+    globalApis: ["easyFlight"],
+    title: "EasyFlight",
+    descriptionKey: "EASYMODULES.Suite.EasyFlight.Description",
+    actionLabelKey: "EASYMODULES.Suite.EasyFlight.Action",
+    configLabelKey: "EASYMODULES.Actions.Configure",
+    iconClass: "fas fa-feather-pointed",
+    order: 90,
+    launchMethods: ["activate"],
+    configureMethods: ["configure"],
     resetMethods: ["resetSettings", "restoreDefaults", "resetToDefaults", "resetConfiguration"]
   }
 ];

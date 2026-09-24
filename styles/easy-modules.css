@@ -11,15 +11,21 @@
 }
 
 .easy-modules-dashboard .window-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
   padding: 0;
-  overflow: auto;
+  overflow: hidden;
   background: var(--em-ink);
   scrollbar-gutter: stable;
 }
 
 .easy-modules-shell {
   position: relative;
-  min-height: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
   padding: 14px 18px 18px;
   overflow: hidden;
   color: var(--em-text);
@@ -40,6 +46,37 @@
     linear-gradient(90deg, rgba(71, 152, 240, 0.03) 1px, transparent 1px);
   background-size: 32px 32px;
   mask-image: linear-gradient(to bottom, black, transparent 86%);
+}
+
+.easy-modules-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-gutter: stable;
+  scrollbar-color: rgba(92, 194, 255, 0.82) rgba(3, 13, 27, 0.72);
+  scrollbar-width: auto;
+}
+
+.easy-modules-scroll::-webkit-scrollbar {
+  width: 12px;
+}
+
+.easy-modules-scroll::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(3, 13, 27, 0.72);
+}
+
+.easy-modules-scroll::-webkit-scrollbar-thumb {
+  min-height: 44px;
+  border: 3px solid rgba(3, 13, 27, 0.72);
+  border-radius: 999px;
+  background: linear-gradient(#6bceff, #167ceb);
+}
+
+.easy-modules-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(#98e0ff, #2594ff);
 }
 
 .easy-modules-shell > * {

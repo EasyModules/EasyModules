@@ -1,4 +1,4 @@
-# EasyModules Hub 1.0.7 — Compatibility and Update Resilience
+# EasyModules Hub 1.0.8 — Compatibility and Update Resilience
 
 ## Supported environment
 
@@ -57,7 +57,7 @@ After a Foundry update:
 4. On v13, confirm no EasyModules scene-control button is injected and confirm **Open EasyModules Hub** exists in `EASYMODULES/EasyModules` and opens the Hub.
 5. Reload a v13 world and confirm the launcher macro is reused rather than duplicated.
 6. Open and resize the dashboard.
-7. Confirm module order, released Free badges, and the EasyRest upcoming card.
+7. Confirm all supported module cards appear in their expected order and that the card area scrolls vertically when needed.
 8. Test Open, Configure, and Restore Defaults for each active child module.
 9. Confirm inactive or missing modules show the unavailable message without console errors.
 10. Confirm an existing EasyTraps Create Trap macro is moved to `EASYMODULES/EasyTraps` and receives `flags.easy-modules.owner = "easy-traps"`.

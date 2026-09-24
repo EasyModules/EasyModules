@@ -296,7 +296,7 @@ Hooks.once("init", () => {
     organizeMacro: (macro, options) => organizeEasyModulesMacro(macro, options),
     claimMacro: (macro, ownerId) => claimEasyModulesMacro(macro, ownerId),
     macroFolders: EASY_MODULES_MACRO_FOLDERS,
-    version: "1.0.7"
+    version: "1.0.8"
   };
 
   game.easyModules = api;

@@ -13,12 +13,6 @@ const EXTRA_MACRO_OWNERS = [
     moduleIds: ["easy-modules"],
     globalApis: ["easyModules"],
     title: "EasyModules"
-  },
-  {
-    id: "easy-qol",
-    moduleIds: ["easy-qol"],
-    globalApis: ["easyQOL"],
-    title: "EasyQOL"
   }
 ];
 
